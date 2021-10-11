@@ -6,14 +6,16 @@ import { UserContext, DispatchContext } from "./context";
 import { ACTION_LOGIN } from "./reducer";
 
 const LoginPlain = () => {
+  const userState = useContext(UserContext);
+  const { username, password, error, isLoading, logged, message } = userState;
 
-  const state = useContext(UserContext);
   const dispatch = useContext(DispatchContext);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     dispatch({ type: ACTION_LOGIN.LOADING });
+
     try {
       await login({ username, password });
       dispatch({ type: ACTION_LOGIN.LOGGED });

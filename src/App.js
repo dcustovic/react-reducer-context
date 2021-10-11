@@ -6,10 +6,10 @@ import reducer from "./reducer";
 import { UserContext, DispatchContext, initState } from "./context";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initState);
+  const [userState, dispatch] = useReducer(reducer, initState);
 
   return (
-    <UserContext.Provider value={state}>
+    <UserContext.Provider value={userState}>
       <DispatchContext.Provider value={dispatch}>
         <div className="App">
           <LoginPlain />
