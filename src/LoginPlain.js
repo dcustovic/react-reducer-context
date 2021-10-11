@@ -1,72 +1,16 @@
-import React, { useReducer } from "react";
+import React, { useContext } from "react";
+
 import { login } from "./utils";
 
+import { UserContext, DispatchContext } from "./context";
+import { ACTION_LOGIN } from "./reducer";
+
 const LoginPlain = () => {
-  const initState = {
-    username: "",
-    password: "",
-    error: "",
-    isLoading: false,
-    logged: false,
-    message: "",
-  };
 
-  const ACTION_LOGIN = {
-    LOADING: "loading",
-    LOGGED: "logged",
-    ERROR: "error",
-    LOGOUT: "logout",
-    FIELD: "field",
-  };
+  const state = useContext(UserContext);
+  const dispatch = useContext(DispatchContext);
 
-  function reducerLogin(state, action) {
-    switch (action.type) {
-      case ACTION_LOGIN.LOADING:
-        return {
-          ...state,
-          isLoading: true,
-          error: "",
-          message: "",
-        };
-      case ACTION_LOGIN.LOGGED:
-        return {
-          ...state,
-          isLoading: false,
-          logged: true,
-          error: "",
-        };
-      case ACTION_LOGIN.ERROR:
-        return {
-          ...state,
-          error: "Incorrect credentials.",
-          isLoading: false,
-          username: "",
-          password: "",
-          message: "",
-        };
-      case ACTION_LOGIN.LOGOUT:
-        return {
-          ...state,
-          logged: false,
-          username: "",
-          password: "",
-          message: "Goodbye :)",
-        };
-      case ACTION_LOGIN.FIELD:
-        return {
-          ...state,
-          [action.usernameAndPassword]: action.value,
-        };
-      default:
-        break;
-    }
-    return state;
-  }
-
-  const [state, dispatch] = useReducer(reducerLogin, initState);
-  const { username, password, error, isLoading, logged, message } = state;
-  console.log("state: ", state);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: ACTION_LOGIN.LOADING });

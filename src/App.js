@@ -1,13 +1,21 @@
+import React, { useReducer } from "react";
+
 import LoginPlain from "./LoginPlain";
-import { UserProvider } from "./context";
+
+import reducer from "./reducer";
+import { UserContext, DispatchContext, initState } from "./context";
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initState);
+
   return (
-    <UserProvider>
-      <div className="App">
-        <LoginPlain />
-      </div>
-    </UserProvider>
+    <UserContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <div className="App">
+          <LoginPlain />
+        </div>
+      </DispatchContext.Provider>
+    </UserContext.Provider>
   );
 }
 

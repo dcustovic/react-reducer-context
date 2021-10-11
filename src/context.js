@@ -1,17 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
 export const UserContext = createContext();
+export const DispatchContext = createContext();
 
-export const UserProvider = (props) => {
-  const [user, setUser] = useState({
-    name: "Marko",
-    password: "password",
-    age: 30,
-  });
-
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {props.children}
-    </UserContext.Provider>
-  );
+export const initState = {
+  username: "",
+  password: "",
+  error: "",
+  isLoading: false,
+  logged: false,
+  message: "",
 };
+
+// export const UserProvider = (props) => {
+//   const [user, setUser] = useState({
+//     name: "Marko",
+//     password: "password",
+//     age: 30,
+//   });
+
+//   return (
+//     <UserContext.Provider value={{ user, setUser }}>
+//       {props.children}
+//     </UserContext.Provider>
+//   );
+// };
