@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 
-import LoginPlain from "./LoginPlain";
+import LoginPlain from "./components/LoginPlain";
 
 import reducer from "./reducer";
 import { UserContext, DispatchContext, initState } from "./context";

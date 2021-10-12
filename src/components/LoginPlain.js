@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import MyDropzone from "./MyDropzone";
 
-import { login } from "./utils";
+import { login } from "../utils";
+import debounce from "./../hooks/debounce";
 
-import { UserContext, DispatchContext } from "./context";
-import { ACTION_LOGIN } from "./reducer";
+import { UserContext, DispatchContext } from "../context";
+import { ACTION_LOGIN } from "../reducer";
 
 const LoginPlain = () => {
   const userState = useContext(UserContext);
@@ -28,11 +30,9 @@ const LoginPlain = () => {
     <div>
       {logged ? (
         <>
-          <p>
-            Successfully logged{" "}
-            <span style={{ color: "green" }}>{username}</span>.
-          </p>
+          <p style={{ display: "inline-flex" }}>Welcome!</p>
           <button
+            style={{ marginLeft: ".5em" }}
             onClick={(e) =>
               dispatch({
                 type: ACTION_LOGIN.LOGOUT,
@@ -41,6 +41,7 @@ const LoginPlain = () => {
           >
             Log Out
           </button>
+          <MyDropzone />
         </>
       ) : (
         <form className="form" onSubmit={handleSubmit}>

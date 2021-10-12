@@ -8,7 +8,7 @@ export const initState = {
   password: "",
   error: "",
   isLoading: false,
-  logged: false,
+  logged: true,
   message: "",
 };
 
