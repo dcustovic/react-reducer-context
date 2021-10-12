@@ -1,28 +1,27 @@
 import React, { useContext } from "react";
 import MyDropzone from "./MyDropzone";
 
-import { login } from "../utils";
-import debounce from "./../hooks/debounce";
+import { useUserContext, useDispatchContext } from "../UserProvider/context";
+import { ActionType } from "./../types/types";
+import { login } from "../utils/login";
 
-import { UserContext, DispatchContext } from "../context";
-import { ACTION_LOGIN } from "../reducer";
+const LoginPlain: React.FC = () => {
+  const userState = useUserContext();
+  const { username, password, error, isLoading, logged, message }: any =
+    userState;
 
-const LoginPlain = () => {
-  const userState = useContext(UserContext);
-  const { username, password, error, isLoading, logged, message } = userState;
+  const dispatch = useDispatchContext();
 
-  const dispatch = useContext(DispatchContext);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    dispatch({ type: ACTION_LOGIN.LOADING });
+    dispatch({ type: ActionType.LOADING });
 
     try {
-      await login({ username, password });
-      dispatch({ type: ACTION_LOGIN.LOGGED });
+      await login(username, password);
+      dispatch({ type: ActionType.LOGGED });
     } catch (error) {
-      dispatch({ type: ACTION_LOGIN.ERROR });
+      dispatch({ type: ActionType.ERROR });
     }
   };
 
@@ -35,7 +34,7 @@ const LoginPlain = () => {
             style={{ marginLeft: ".5em" }}
             onClick={(e) =>
               dispatch({
-                type: ACTION_LOGIN.LOGOUT,
+                type: ActionType.LOGOUT,
               })
             }
           >
@@ -52,7 +51,7 @@ const LoginPlain = () => {
             value={username}
             onChange={(e) =>
               dispatch({
-                type: ACTION_LOGIN.FIELD,
+                type: ActionType.FIELD,
                 usernameAndPassword: "username",
                 value: e.target.value,
               })
@@ -65,7 +64,7 @@ const LoginPlain = () => {
             style={{ marginLeft: "5px" }}
             onChange={(e) =>
               dispatch({
-                type: ACTION_LOGIN.FIELD,
+                type: ActionType.FIELD,
                 usernameAndPassword: "password",
                 value: e.target.value,
               })

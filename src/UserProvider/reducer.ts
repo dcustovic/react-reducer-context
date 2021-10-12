@@ -1,33 +1,24 @@
-export const ACTION_LOGIN = {
-  LOADING: "loading",
-  LOGGED: "logged",
-  ERROR: "error",
-  LOGOUT: "logout",
-  FIELD: "field",
-};
+import { UserState, ActionType } from "../types/types";
 
-export default function reducer(state, action) {
+export default function reducer(state: UserState, action: any) {
   const { type, usernameAndPassword } = action;
-  console.log("CURRENT_STATE: ", state);
 
   switch (type) {
-    case ACTION_LOGIN.LOADING:
-      console.log("ACTION_LOADING: ", state);
+    case ActionType.LOADING:
       return {
         ...state,
         isLoading: true,
         error: "",
       };
 
-    case ACTION_LOGIN.LOGGED:
-      console.log("ACTION_LOGGED: ", state);
+    case ActionType.LOGGED:
       return {
         ...state,
         isLoading: false,
         logged: true,
         error: "",
       };
-    case ACTION_LOGIN.ERROR:
+    case ActionType.ERROR:
       return {
         ...state,
         error: "Incorrect credentials.",
@@ -36,7 +27,7 @@ export default function reducer(state, action) {
         password: "",
         message: "",
       };
-    case ACTION_LOGIN.LOGOUT:
+    case ActionType.LOGOUT:
       return {
         ...state,
         logged: false,
@@ -44,7 +35,7 @@ export default function reducer(state, action) {
         password: "",
         message: "Goodbye :)",
       };
-    case ACTION_LOGIN.FIELD:
+    case ActionType.FIELD:
       return {
         ...state,
         [usernameAndPassword]: action.value,

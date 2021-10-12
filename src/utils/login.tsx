@@ -1,5 +1,5 @@
-export async function login({ username, password }) {
-  return new Promise((resolve, reject) => {
+export async function login(username: string, password: string) {
+  return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       if (username === "test" && password === "test") {
         resolve();

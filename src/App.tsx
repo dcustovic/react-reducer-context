@@ -2,8 +2,12 @@ import React, { useReducer } from "react";
 
 import LoginPlain from "./components/LoginPlain";
 
-import reducer from "./reducer";
-import { UserContext, DispatchContext, initState } from "./context";
+import reducer from "./UserProvider/reducer";
+import {
+  UserContext,
+  DispatchContext,
+  initState,
+} from "./UserProvider/context";
 
 function App() {
   const [userState, dispatch] = useReducer(reducer, initState);
