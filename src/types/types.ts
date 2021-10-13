@@ -8,20 +8,20 @@ export enum ActionType {
   FIELD = "field",
 }
 
-export type UserAction = {
+export interface UserAction {
   type: ActionType;
   usernameAndPassword: string;
   value: any;
-};
+}
 
-export type UserState = {
+export interface UserState {
   username: string;
   password: string | number;
   error: string;
   message: string;
   isLoading: boolean;
   logged: boolean;
-};
+}
 
 export interface RejectedFileType {
   file: FileWithPath;
