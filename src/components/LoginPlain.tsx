@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import MyDropzone from "./MyDropzone";
 
 import { useUserContext, useDispatchContext } from "../UserProvider/context";

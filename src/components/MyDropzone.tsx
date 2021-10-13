@@ -1,5 +1,6 @@
 import React, { CSSProperties } from "react";
 import { useDropzone } from "react-dropzone";
+import { FileType, RejectedFileType, ErrorType } from "../types/types";
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -58,7 +59,7 @@ const MyDropzone = () => {
 
   const maxLength = 5;
 
-  function nameValidator(file: any) {
+  function nameValidator(file: File) {
     if (file.name.length > maxLength) {
       return {
         code: "name-too-large",
@@ -69,23 +70,26 @@ const MyDropzone = () => {
     return null;
   }
 
-  const files = acceptedFiles.map((file: any) => {
+  const files = acceptedFiles.map((file: FileType) => {
+    console.log("this file: ", file);
     return <li key={file.path}>{file.path}</li>;
   });
 
-  const rejectedFiles = fileRejections.map(({ file, errors }: any) => {
-    console.log(file);
-    return (
-      <li key={file.path}>
-        {file.path}
-        <ul>
-          {errors.map((e: any) => (
-            <li key={e.code}>{e.message}</li>
-          ))}
-        </ul>
-      </li>
-    );
-  });
+  const rejectedFiles = fileRejections.map(
+    ({ file, errors }: RejectedFileType) => {
+      console.log(file);
+      return (
+        <li key={file.path}>
+          {file.path}
+          <ul>
+            {errors.map((e: ErrorType) => {
+              return <li key={e.code}>{e.message}</li>;
+            })}
+          </ul>
+        </li>
+      );
+    }
+  );
 
   return (
     <>
