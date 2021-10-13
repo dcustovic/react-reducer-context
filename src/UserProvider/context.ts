@@ -7,7 +7,7 @@ export const initState: UserState = {
   error: "",
   message: "",
   isLoading: false,
-  logged: true,
+  logged: false,
 };
 
 export const UserContext = createContext<UserState | undefined>(undefined);

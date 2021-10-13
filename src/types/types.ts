@@ -1,3 +1,5 @@
+import { FileError, FileWithPath } from "react-dropzone";
+
 export enum ActionType {
   LOADING = "loading",
   LOGGED = "logged",
@@ -5,6 +7,12 @@ export enum ActionType {
   LOGOUT = "logout",
   FIELD = "field",
 }
+
+export type UserAction = {
+  type: ActionType;
+  usernameAndPassword: string;
+  value: any;
+};
 
 export type UserState = {
   username: string;
@@ -15,22 +23,7 @@ export type UserState = {
   logged: boolean;
 };
 
-export type UserAction = {
-  type: ActionType;
-  usernameAndPassword: string;
-  value: any;
-};
-
-export interface ErrorType {
-  code: string;
-  message: string;
-}
-
-export interface FileType extends File {
-  path?: string;
-}
-
 export interface RejectedFileType {
-  file: FileType;
-  errors: ErrorType[];
+  file: FileWithPath;
+  errors: FileError[];
 }

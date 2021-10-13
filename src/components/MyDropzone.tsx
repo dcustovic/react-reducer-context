@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
-import { useDropzone } from "react-dropzone";
-import { FileType, RejectedFileType, ErrorType } from "../types/types";
+import { useDropzone, FileWithPath, FileError } from "react-dropzone";
+import { RejectedFileType } from "../types/types";
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -34,7 +34,7 @@ const rejectStyle = {
   color: "white",
 };
 
-const MyDropzone = () => {
+const MyDropzone: React.FC = () => {
   const {
     getRootProps,
     getInputProps,
@@ -59,7 +59,7 @@ const MyDropzone = () => {
 
   const maxLength = 5;
 
-  function nameValidator(file: File) {
+  function nameValidator(file: FileWithPath) {
     if (file.name.length > maxLength) {
       return {
         code: "name-too-large",
@@ -70,7 +70,7 @@ const MyDropzone = () => {
     return null;
   }
 
-  const files = acceptedFiles.map((file: FileType) => {
+  const files = acceptedFiles.map((file: FileWithPath) => {
     console.log("this file: ", file);
     return <li key={file.path}>{file.path}</li>;
   });
@@ -82,7 +82,7 @@ const MyDropzone = () => {
         <li key={file.path}>
           {file.path}
           <ul>
-            {errors.map((e: ErrorType) => {
+            {errors.map((e: FileError) => {
               return <li key={e.code}>{e.message}</li>;
             })}
           </ul>
