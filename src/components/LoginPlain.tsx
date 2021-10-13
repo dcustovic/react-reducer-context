@@ -7,8 +7,7 @@ import { login } from "../utils/login";
 
 const LoginPlain: React.FC = () => {
   const userState = useUserContext();
-  const { username, password, error, isLoading, logged, message }: any =
-    userState;
+  const { username, password, error, isLoading, logged, message } = userState;
 
   const dispatch = useDispatchContext();
 

@@ -15,6 +15,12 @@ export type UserState = {
   logged: boolean;
 };
 
+export type UserAction = {
+  type: ActionType;
+  usernameAndPassword: string;
+  value: any;
+};
+
 export interface ErrorType {
   code: string;
   message: string;

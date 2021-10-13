@@ -1,7 +1,7 @@
-import { UserState, ActionType } from "../types/types";
+import { UserState, UserAction, ActionType } from "../types/types";
 
-export default function reducer(state: UserState, action: any) {
-  const { type, usernameAndPassword } = action;
+export default function reducer(state: UserState, action: UserAction) {
+  const { type, usernameAndPassword, value } = action;
 
   switch (type) {
     case ActionType.LOADING:
@@ -38,7 +38,7 @@ export default function reducer(state: UserState, action: any) {
     case ActionType.FIELD:
       return {
         ...state,
-        [usernameAndPassword]: action.value,
+        [usernameAndPassword]: value,
       };
     default:
       return state;
