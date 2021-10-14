@@ -1,4 +1,4 @@
-import { UserState, UserAction, ActionType } from "../types/types";
+import { UserState, UserAction, ActionType } from "../../types/types";
 
 export default function reducer(state: UserState, action: UserAction) {
   const { type, usernameAndPassword, value } = action;

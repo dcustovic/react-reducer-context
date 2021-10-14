@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { UserState } from "../types/types";
+import { UserState } from "../../types/types";
 
 export const initState: UserState = {
   username: "",

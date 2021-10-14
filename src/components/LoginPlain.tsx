@@ -1,13 +1,17 @@
 import React from "react";
 import MyDropzone from "./MyDropzone";
 
-import { useUserContext, useDispatchContext } from "../UserProvider/context";
+import {
+  useUserContext,
+  useDispatchContext,
+} from "../containers/UserProvider/context";
 import { ActionType } from "./../types/types";
 import { login } from "../utils/login";
 
 const LoginPlain: React.FC = () => {
   const userState = useUserContext();
   const { username, password, error, isLoading, logged, message } = userState;
+  console.log("userState: ", userState);
 
   const dispatch = useDispatchContext();
 
