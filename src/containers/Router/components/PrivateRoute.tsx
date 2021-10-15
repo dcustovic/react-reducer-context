@@ -7,7 +7,7 @@ import { PATH_TO_AUTH } from "../myRoutes";
 const PrivateRoute = ({ ...rest }: any) => {
   const { logged, username } = useUserContext();
 
-  if (logged === true && username !== "") {
+  if (logged && username !== "") {
     return <Route {...rest} />;
   }
 

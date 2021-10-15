@@ -23,9 +23,9 @@ const Router: React.FC = () => {
     <BrowserRouter>
       <Switch>
         {myRoutes.map((oneRoute) => {
-          const Type = getRouteType(oneRoute.type);
+          const ComponentType = getRouteType(oneRoute.type);
           return (
-            <Type
+            <ComponentType
               path={oneRoute.path}
               exact={oneRoute.exact}
               key={oneRoute.name}
