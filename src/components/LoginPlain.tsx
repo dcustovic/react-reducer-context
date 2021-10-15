@@ -31,20 +31,7 @@ const LoginPlain: React.FC = () => {
   return (
     <div>
       {logged ? (
-        <>
-          <p style={{ display: "inline-flex" }}>Welcome!</p>
-          <button
-            style={{ marginLeft: ".5em" }}
-            onClick={(e) =>
-              dispatch({
-                type: ActionType.LOGOUT,
-              })
-            }
-          >
-            Log Out
-          </button>
-          <MyDropzone />
-        </>
+        <MyDropzone />
       ) : (
         <form className="form" onSubmit={handleSubmit}>
           <p>My app</p>

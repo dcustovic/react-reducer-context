@@ -1,10 +1,10 @@
-import LoginPlain from "./components/LoginPlain";
+import Router from "./containers/Router";
 import UserProvider from "./containers/UserProvider";
 
 function App() {
   return (
     <UserProvider>
-      <LoginPlain />
+      <Router />
     </UserProvider>
   );
 }
