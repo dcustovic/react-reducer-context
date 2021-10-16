@@ -1,8 +1,8 @@
 import React, { CSSProperties } from "react";
 import { useDropzone, FileWithPath, FileError } from "react-dropzone";
-import { useDispatchContext } from "../containers/UserProvider/context";
-import { ActionType, RejectedFileType } from "../types/types";
+import { RejectedFileType } from "../types/types";
 
+//
 const baseStyle: CSSProperties = {
   flex: 1,
   display: "flex",
@@ -45,8 +45,6 @@ const MyDropzone: React.FC = () => {
     isDragAccept,
     isDragReject,
   } = useDropzone({ accept: "image/*", validator: nameValidator });
-
-  const dispatch = useDispatchContext();
 
   // Styles //
   const style = React.useMemo(
@@ -96,17 +94,6 @@ const MyDropzone: React.FC = () => {
 
   return (
     <>
-      <p style={{ display: "inline-flex" }}>Welcome!</p>
-      <button
-        style={{ marginLeft: ".5em" }}
-        onClick={(e) =>
-          dispatch({
-            type: ActionType.LOGOUT,
-          })
-        }
-      >
-        Log Out
-      </button>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>

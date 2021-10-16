@@ -4,7 +4,8 @@ import { UserState } from "../../types/types";
 export const initState: UserState = {
   username: "",
   password: "",
-  error: "",
+  error: false,
+  errorMsg: null,
   message: "",
   isLoading: false,
   logged: false,

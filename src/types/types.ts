@@ -4,6 +4,7 @@ export enum ActionType {
   LOADING = "loading",
   LOGGED = "logged",
   ERROR = "error",
+  ERROR_ON_CLOSE = "error on close",
   LOGOUT = "logout",
   FIELD = "field",
 }
@@ -11,13 +12,15 @@ export enum ActionType {
 export interface UserAction {
   type: ActionType;
   usernameAndPassword: string;
+  payload: any;
   value: any;
 }
 
 export interface UserState {
   username: string;
   password: string | number;
-  error: string;
+  error: boolean;
+  errorMsg: any;
   message: string;
   isLoading: boolean;
   logged: boolean;

@@ -8,7 +8,7 @@ export default function reducer(state: UserState, action: UserAction) {
       return {
         ...state,
         isLoading: true,
-        error: "",
+        error: false,
       };
 
     case ActionType.LOGGED:
@@ -16,12 +16,13 @@ export default function reducer(state: UserState, action: UserAction) {
         ...state,
         isLoading: false,
         logged: true,
-        error: "",
+        error: false,
       };
     case ActionType.ERROR:
       return {
         ...state,
-        error: "Incorrect credentials.",
+        error: true,
+        errorMsg: "Incorrect credentials.",
         isLoading: false,
         username: "",
         password: "",
@@ -39,6 +40,12 @@ export default function reducer(state: UserState, action: UserAction) {
       return {
         ...state,
         [usernameAndPassword]: value,
+      };
+    case ActionType.ERROR_ON_CLOSE:
+      return {
+        ...state,
+        error: false,
+        errorMsg: null,
       };
     default:
       return state;
