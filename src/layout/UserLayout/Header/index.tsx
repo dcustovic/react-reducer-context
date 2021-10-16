@@ -21,7 +21,7 @@ const style: React.CSSProperties = {
   marginLeft: ".7rem",
   border: "none",
   borderRadius: "5px",
-  backgroundColor: "white",
+  backgroundColor: "#f6f2ff",
   color: "black",
 };
 
@@ -47,7 +47,11 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        style={{ background: "#7316f5", marginBottom: "2rem", color: "white" }}
+        style={{
+          background: "#6e13ed",
+          marginBottom: "2rem",
+          color: "white",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -68,7 +72,6 @@ export default function Header() {
           ) : (
             <form>
               <input
-                style={style}
                 type="text"
                 placeholder="username"
                 value={username}
@@ -79,6 +82,7 @@ export default function Header() {
                     value: e.target.value,
                   })
                 }
+                style={style}
               />
               <input
                 type="password"
@@ -97,10 +101,10 @@ export default function Header() {
                 onClick={handleLogin}
                 disabled={isLoading}
                 color="inherit"
-                style={{ marginLeft: ".7rem" }}
+                style={{ marginLeft: "1rem" }}
               >
                 {isLoading ? (
-                  <CircularProgress style={{ color: "#54b5ff" }} />
+                  <CircularProgress style={{ color: "#59d0ff" }} size={30} />
                 ) : (
                   "Log in"
                 )}

@@ -15,7 +15,6 @@ export interface State extends SnackbarOrigin {
 export default function PositionedSnackbar() {
   const userState = useUserContext();
   const { error, errorMsg } = userState;
-  console.log("error: ", error);
 
   const dispatch = useDispatchContext();
 

@@ -34,7 +34,6 @@ export default function reducer(state: UserState, action: UserAction) {
         logged: false,
         username: "",
         password: "",
-        message: "Goodbye :)",
       };
     case ActionType.FIELD:
       return {

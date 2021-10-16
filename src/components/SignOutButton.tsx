@@ -9,7 +9,7 @@ function SignOutButton() {
   return (
     <div>
       <MenuItem onClick={() => dispatch({ type: ActionType.LOGOUT })}>
-        Logout
+        Log out
       </MenuItem>
     </div>
   );
