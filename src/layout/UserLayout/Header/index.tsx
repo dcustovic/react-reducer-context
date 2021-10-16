@@ -13,14 +13,22 @@ import {
 import { ActionType } from "../../../types/types";
 import { login } from "../../../utils/login";
 import CircularProgress from "@mui/material/CircularProgress";
+import ProfileMenu from "./ProfileMenu";
+
 //
+const style: React.CSSProperties = {
+  padding: "7px 16px",
+  marginLeft: ".7rem",
+  border: "none",
+  borderRadius: "5px",
+  backgroundColor: "white",
+  color: "black",
+};
 
 export default function Header() {
+  const dispatch = useDispatchContext();
   const userState = useUserContext();
   const { username, password, isLoading, logged } = userState;
-  console.log("isLoading : ", isLoading);
-
-  const dispatch = useDispatchContext();
 
   async function handleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -31,13 +39,16 @@ export default function Header() {
       await login(username, password);
       dispatch({ type: ActionType.LOGGED });
     } catch (error) {
-      dispatch({ type: ActionType.ERROR, payload: error });
+      dispatch({ type: ActionType.ERROR });
     }
   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{ background: "#7316f5", marginBottom: "2rem", color: "white" }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -53,16 +64,48 @@ export default function Header() {
           </Typography>
 
           {logged ? (
-            <Button
-              color="inherit"
-              onClick={() => dispatch({ type: ActionType.LOGOUT })}
-            >
-              Log out
-            </Button>
+            <ProfileMenu />
           ) : (
-            <Button onClick={handleLogin} color="inherit" disabled={isLoading}>
-              {isLoading ? <CircularProgress color="inherit" /> : "Log in"}
-            </Button>
+            <form>
+              <input
+                style={style}
+                type="text"
+                placeholder="username"
+                value={username}
+                onChange={(e) =>
+                  dispatch({
+                    type: ActionType.FIELD,
+                    usernameAndPassword: "username",
+                    value: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) =>
+                  dispatch({
+                    type: ActionType.FIELD,
+                    usernameAndPassword: "password",
+                    value: e.target.value,
+                  })
+                }
+                style={style}
+              />
+              <Button
+                onClick={handleLogin}
+                disabled={isLoading}
+                color="inherit"
+                style={{ marginLeft: ".7rem" }}
+              >
+                {isLoading ? (
+                  <CircularProgress style={{ color: "#54b5ff" }} />
+                ) : (
+                  "Log in"
+                )}
+              </Button>
+            </form>
           )}
         </Toolbar>
       </AppBar>

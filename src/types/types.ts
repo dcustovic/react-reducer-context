@@ -12,7 +12,6 @@ export enum ActionType {
 export interface UserAction {
   type: ActionType;
   usernameAndPassword: string;
-  payload: any;
   value: any;
 }
 
