@@ -1,16 +1,29 @@
 import React, { useState } from "react";
-import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons";
+import { IconButton, Menu, MenuItem, Theme } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 import SignOutButton from "./../../../components//SignOutButton";
 import { useUserContext } from "../../../containers/UserProvider/context";
 
-//
+// for some reason this is not working ever since I used 
+// makeStyle() in Header component
+const useStyles = makeStyles((theme: Theme) => ({
+  profileIcon: {
+    backgroundColor: "inherit",
+    "&:hover": {
+      backgroundColor: "rgb(169, 130, 209, 0.6)",
+    },
+  },
+}));
+
 export default function ProfileMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
   const { username } = useUserContext();
+  const classes = useStyles();
 
   // functions
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,12 +37,13 @@ export default function ProfileMenu() {
   return (
     <div>
       <IconButton
+        className={classes.profileIcon}
         color="inherit"
         edge="end"
         aria-haspopup="true"
         onClick={handleProfileMenuOpen}
       >
-        <AccountCircle />
+        <AccountCircleIcon />
       </IconButton>
       <Menu
         anchorEl={anchorEl}
@@ -39,11 +53,14 @@ export default function ProfileMenu() {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem button={false}>
+        <MenuItem dense selected={false}>
           {username && (
-            <span>
-              Welcome <strong style={{ color: "#782fde" }}>{username}</strong>
-            </span>
+            <>
+              <AccountCircleOutlinedIcon style={{ marginRight: ".7rem" }} />
+              <span>
+                Welcome <strong style={{ color: "#782fde" }}>{username}</strong>
+              </span>
+            </>
           )}
         </MenuItem>
         <SignOutButton />

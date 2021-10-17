@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Theme } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
   useDispatchContext,
   useUserContext,
@@ -16,19 +19,22 @@ import CircularProgress from "@mui/material/CircularProgress";
 import ProfileMenu from "./ProfileMenu";
 
 //
-const style: React.CSSProperties = {
-  padding: "7px 16px",
-  marginLeft: ".7rem",
-  border: "none",
-  borderRadius: "5px",
-  backgroundColor: "#f6f2ff",
-  color: "black",
-};
+const useStyles = makeStyles((theme: Theme) => ({
+  inputStyle: {
+    padding: "6px 16px",
+    marginLeft: ".6rem",
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#f6f2ff",
+    color: "black",
+  },
+}));
 
 export default function Header() {
   const dispatch = useDispatchContext();
   const userState = useUserContext();
   const { username, password, isLoading, logged } = userState;
+  const classes = useStyles();
 
   async function handleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -50,7 +56,6 @@ export default function Header() {
         style={{
           background: "#6e13ed",
           marginBottom: "2rem",
-          color: "white",
         }}
       >
         <Toolbar>
@@ -82,7 +87,7 @@ export default function Header() {
                     value: e.target.value,
                   })
                 }
-                style={style}
+                className={classes.inputStyle}
               />
               <input
                 type="password"
@@ -95,7 +100,7 @@ export default function Header() {
                     value: e.target.value,
                   })
                 }
-                style={style}
+                className={classes.inputStyle}
               />
               <Button
                 onClick={handleLogin}
