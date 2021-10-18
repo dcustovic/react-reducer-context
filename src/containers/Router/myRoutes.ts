@@ -1,10 +1,12 @@
 import { RouteType, ComponentRoute } from "./types";
-import LoginPlain from "../../components/LoginPlain";
 import MyDropzone from "../../components/MyDropzone";
+import LoginPlain from "../../components/LoginPlain";
+import Query from "../../components/Query";
 
 //
 export const PATH_TO_MYAPP = "/myapp";
 export const PATH_TO_AUTH = "/login";
+export const PATH_TO_QUERY = "/query";
 
 export const myRoutes: Array<ComponentRoute> = [
   {
@@ -19,6 +21,13 @@ export const myRoutes: Array<ComponentRoute> = [
     type: RouteType.PRIVATE,
     path: PATH_TO_MYAPP,
     component: MyDropzone,
+    exact: true,
+  },
+  {
+    name: "query",
+    type: RouteType.PRIVATE,
+    path: PATH_TO_QUERY,
+    component: Query,
     exact: true,
   },
 ];

@@ -1,5 +1,8 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import { useDropzone, FileWithPath, FileError } from "react-dropzone";
+
+import { globalAxios } from "../globals/globalAxios";
+import useApiCall from "../hooks/useApiCall";
 import { RejectedFileType } from "../types/types";
 
 //
@@ -72,13 +75,11 @@ const MyDropzone: React.FC = () => {
   }
 
   const files = acceptedFiles.map((file: FileWithPath) => {
-    console.log("this file: ", file);
     return <li key={file.path}>{file.path}</li>;
   });
 
   const rejectedFiles = fileRejections.map(
     ({ file, errors }: RejectedFileType) => {
-      console.log(file);
       return (
         <li key={file.path}>
           {file.path}
@@ -91,6 +92,9 @@ const MyDropzone: React.FC = () => {
       );
     }
   );
+
+  const { data, isLoading, error } = useApiCall();
+  console.log("data from api: ", data);
 
   return (
     <>
@@ -105,6 +109,7 @@ const MyDropzone: React.FC = () => {
         <h4>Rejected files:</h4>
         <ol style={{ fontSize: "15px" }}>{rejectedFiles}</ol>
       </aside>
+      {}
     </>
   );
 };

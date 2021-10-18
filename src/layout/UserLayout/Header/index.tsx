@@ -34,6 +34,7 @@ export default function Header() {
   const dispatch = useDispatchContext();
   const userState = useUserContext();
   const { username, password, isLoading, logged } = userState;
+
   const classes = useStyles();
 
   async function handleLogin(e: { preventDefault: () => void }) {
@@ -43,7 +44,11 @@ export default function Header() {
 
     try {
       await login(username, password);
-      dispatch({ type: ActionType.LOGGED });
+      dispatch({
+        type: ActionType.LOGGED,
+        username: username,
+        password: password,
+      });
     } catch (error) {
       dispatch({ type: ActionType.ERROR });
     }
