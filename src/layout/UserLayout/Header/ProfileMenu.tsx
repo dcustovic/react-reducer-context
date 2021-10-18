@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { IconButton, Menu, MenuItem, Theme } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+
+import { makeStyles } from "@mui/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { IconButton, Menu, MenuItem, Theme } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 import SignOutButton from "./../../../components//SignOutButton";
 import { useUserContext } from "../../../containers/UserProvider/context";
 
-// for some reason this is not working ever since I used 
-// makeStyle() in Header component
+// for some reason this is not working ever since I used
+// the same makeStyles() logic in Header component
 const useStyles = makeStyles((theme: Theme) => ({
   profileIcon: {
     backgroundColor: "inherit",
@@ -25,11 +26,11 @@ export default function ProfileMenu() {
   const { username } = useUserContext();
   const classes = useStyles();
 
-  // functions
+  // handle
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
+  // handle
   const handleMenuClose = () => {
     setAnchorEl(null);
   };

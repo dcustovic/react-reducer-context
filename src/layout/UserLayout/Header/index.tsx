@@ -7,7 +7,8 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Theme } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   useDispatchContext,
@@ -15,7 +16,6 @@ import {
 } from "../../../containers/UserProvider/context";
 import { ActionType } from "../../../types/types";
 import { login } from "../../../utils/login";
-import CircularProgress from "@mui/material/CircularProgress";
 import ProfileMenu from "./ProfileMenu";
 
 //
@@ -73,7 +73,9 @@ export default function Header() {
           </Typography>
 
           {logged ? (
-            <ProfileMenu />
+            <>
+              <ProfileMenu />
+            </>
           ) : (
             <form>
               <input
