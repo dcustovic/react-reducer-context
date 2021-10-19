@@ -31,11 +31,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default function Header() {
+  const classes = useStyles();
   const dispatch = useDispatchContext();
   const userState = useUserContext();
-  const { username, password, isLoading, logged } = userState;
-
-  const classes = useStyles();
+  const { username, password, isLoading } = userState;
 
   async function handleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -46,13 +45,18 @@ export default function Header() {
       await login(username, password);
       dispatch({
         type: ActionType.LOGGED,
-        username: username,
-        password: password,
       });
     } catch (error) {
       dispatch({ type: ActionType.ERROR });
     }
   }
+
+  let localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  let currentUser = localUser.user;
+  console.log(
+    "currentUser: ",
+    JSON.parse(localStorage.getItem("localUser") || "{}")
+  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -77,7 +81,7 @@ export default function Header() {
             My app
           </Typography>
 
-          {logged ? (
+          {currentUser ? (
             <>
               <ProfileMenu />
             </>

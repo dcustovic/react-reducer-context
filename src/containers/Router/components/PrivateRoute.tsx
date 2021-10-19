@@ -1,14 +1,15 @@
 import { Redirect, Route } from "react-router";
-import UserLayout from "../../../layout/UserLayout";
-
-import { useUserContext } from "../../UserProvider/context";
 import { PATH_TO_AUTH } from "../myRoutes";
+import UserLayout from "../../../layout/UserLayout";
 
 //
 const PrivateRoute = ({ ...rest }: any) => {
-  const { logged, username } = useUserContext();
+  // const { logged, username } = useUserContext();
 
-  if (logged && username !== "") {
+  let localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  let loggedIn = localUser.loggedIn;
+
+  if (loggedIn) {
     return (
       <UserLayout>
         <Route {...rest} />

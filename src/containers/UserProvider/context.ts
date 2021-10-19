@@ -2,11 +2,11 @@ import { createContext, useContext } from "react";
 import { UserState } from "../../types/types";
 
 export const initState: UserState = {
-  username: "",
-  password: "",
+  username: null,
+  password: null,
   error: false,
   errorMsg: null,
-  message: "",
+  message: null,
   isLoading: false,
   logged: false,
 };

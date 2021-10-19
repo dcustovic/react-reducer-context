@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-
 import { makeStyles } from "@mui/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { IconButton, Menu, MenuItem, Theme } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 import SignOutButton from "./../../../components//SignOutButton";
-import { useUserContext } from "../../../containers/UserProvider/context";
 
 // for some reason this is not working ever since I used
 // the same makeStyles() logic in Header component
@@ -20,11 +18,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default function ProfileMenu() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
-  const { username } = useUserContext();
-  const classes = useStyles();
+  let localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  let user = localUser.user;
 
   // handle
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -55,11 +54,11 @@ export default function ProfileMenu() {
         onClose={handleMenuClose}
       >
         <MenuItem dense selected={false}>
-          {username && (
+          {user && (
             <>
               <AccountCircleOutlinedIcon style={{ marginRight: ".7rem" }} />
               <span>
-                Welcome <strong style={{ color: "#782fde" }}>{username}</strong>
+                Welcome <strong style={{ color: "#782fde" }}>{user}</strong>
               </span>
             </>
           )}

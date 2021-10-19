@@ -1,7 +1,6 @@
 import { MenuItem } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-
 import { useDispatchContext } from "../containers/UserProvider/context";
 import { ActionType } from "../types/types";
 

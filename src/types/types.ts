@@ -16,13 +16,13 @@ export interface UserAction {
 }
 
 export interface UserState {
-  username: string;
-  password: string | number;
+  username: any;
+  password: any;
   error: boolean;
   errorMsg: any;
-  message: string;
+  message: any;
   isLoading: boolean;
-  logged: boolean;
+  logged: any;
 }
 
 export interface RejectedFileType {

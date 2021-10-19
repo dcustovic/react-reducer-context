@@ -1,8 +1,6 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties } from "react";
 import { useDropzone, FileWithPath, FileError } from "react-dropzone";
 
-import { globalAxios } from "../globals/globalAxios";
-import useApiCall from "../hooks/useApiCall";
 import { RejectedFileType } from "../types/types";
 
 //
@@ -93,9 +91,6 @@ const MyDropzone: React.FC = () => {
     }
   );
 
-  const { data, isLoading, error } = useApiCall();
-  console.log("data from api: ", data);
-
   return (
     <>
       <div {...getRootProps({ style })}>
@@ -109,7 +104,6 @@ const MyDropzone: React.FC = () => {
         <h4>Rejected files:</h4>
         <ol style={{ fontSize: "15px" }}>{rejectedFiles}</ol>
       </aside>
-      {}
     </>
   );
 };
