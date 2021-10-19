@@ -13,7 +13,7 @@ const PrivateRoute = ({ ...rest }: any) => {
   const localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
   const currentUser = localUser.user;
 
-  if (currentUser) {
+  if (currentUser || logged) {
     return (
       <UserLayout>
         <Route {...rest} />
