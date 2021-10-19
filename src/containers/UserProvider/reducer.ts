@@ -2,12 +2,11 @@ import { UserState, UserAction, ActionType } from "../../types/types";
 
 export default function reducer(state: UserState, action: UserAction) {
   const { type, usernameAndPassword, value } = action;
-  console.log("state: ", state);
 
-  let parseData = JSON.parse(localStorage.getItem("localUser") || "{}");
-  let username = localStorage.removeItem(parseData[0]);
-  console.log("nesto se desi iz reducera: ", username);
-  console.log("parseData: ", parseData);
+  // let parseData = JSON.parse(localStorage.getItem("localUser") || "{}");
+  // let username = localStorage.removeItem(parseData[0]);
+  // console.log("nesto se desi iz reducera: ", username);
+  // console.log("parseData: ", parseData);
 
   switch (type) {
     case ActionType.LOADING:
@@ -39,8 +38,6 @@ export default function reducer(state: UserState, action: UserAction) {
       return {
         ...state,
         logged: false,
-        username: localStorage.removeItem(parseData[0]),
-        password: localStorage.removeItem(parseData[1]),
       };
     case ActionType.FIELD:
       return {

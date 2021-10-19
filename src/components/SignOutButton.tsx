@@ -7,9 +7,16 @@ import { ActionType } from "../types/types";
 //
 function SignOutButton() {
   const dispatch = useDispatchContext();
+
+  function signOut() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    dispatch({ type: ActionType.LOGOUT });
+  }
+
   return (
     <div>
-      <MenuItem dense onClick={() => dispatch({ type: ActionType.LOGOUT })}>
+      <MenuItem onClick={signOut} dense>
         <LogoutIcon style={{ marginRight: ".7rem" }} /> Log out
       </MenuItem>
     </div>
