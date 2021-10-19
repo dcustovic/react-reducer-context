@@ -9,8 +9,7 @@ function SignOutButton() {
   const dispatch = useDispatchContext();
 
   function signOut() {
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
+    localStorage.removeItem("localUser");
     dispatch({ type: ActionType.LOGOUT });
   }
 

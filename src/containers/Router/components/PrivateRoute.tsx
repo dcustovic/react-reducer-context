@@ -5,8 +5,13 @@ import { useUserContext } from "../../UserProvider/context";
 
 //
 const PrivateRoute = ({ ...rest }: any) => {
+  // for components to be logged out and sent to login page
+  // i needed to put { logged } that just sits there
+  // otherwise the component will stay where it was
   const { logged } = useUserContext();
-  const currentUser = localStorage.getItem("username");
+
+  const localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  const currentUser = localUser.user;
 
   if (currentUser) {
     return (

@@ -9,9 +9,7 @@ export async function login(
           user: username,
           pass: password,
         };
-
-        localStorage.setItem("username", username);
-        localStorage.setItem("password", password);
+        localStorage.setItem("localUser", JSON.stringify(localUser));
         resolve();
       } else {
         reject();

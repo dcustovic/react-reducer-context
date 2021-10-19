@@ -34,15 +34,7 @@ export default function Header() {
   const classes = useStyles();
   const dispatch = useDispatchContext();
   const userState = useUserContext();
-  const { username, password, isLoading, logged } = userState;
-  console.log(
-    "username: ",
-    username,
-    "\npassword: ",
-    password,
-    "\nlogged: ",
-    logged
-  );
+  const { username, password, isLoading } = userState;
 
   async function handleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -59,8 +51,8 @@ export default function Header() {
     }
   }
 
-  const currentUser = localStorage.getItem("username");
-  console.log("currentUser: ", currentUser);
+  const localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  const currentUser = localUser.user;
 
   return (
     <Box sx={{ flexGrow: 1 }}>

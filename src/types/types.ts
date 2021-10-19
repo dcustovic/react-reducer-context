@@ -16,8 +16,8 @@ export interface UserAction {
 }
 
 export interface UserState {
-  username: any;
-  password: any;
+  username: string;
+  password: string;
   error: boolean;
   errorMsg: any;
   message: any;
