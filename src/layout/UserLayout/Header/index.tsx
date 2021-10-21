@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,6 +17,7 @@ import {
 import { ActionType } from "../../../types/types";
 import { login } from "../../../utils/login";
 import ProfileMenu from "./ProfileMenu";
+import { UserLayoutProperties } from "..";
 
 //
 const useStyles = makeStyles((theme: Theme) => ({
@@ -30,11 +31,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function Header() {
+const Header: React.FC<UserLayoutProperties> = ({ handleSidebar, isOpen }) => {
   const classes = useStyles();
   const dispatch = useDispatchContext();
   const userState = useUserContext();
   const { username, password, isLoading } = userState;
+
+  const localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
+  const currentUser = localUser.user;
 
   async function handleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -51,9 +55,6 @@ export default function Header() {
     }
   }
 
-  const localUser = JSON.parse(localStorage.getItem("localUser") || "{}");
-  const currentUser = localUser.user;
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -69,7 +70,7 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            onClick={() => handleSidebar(isOpen)}
           >
             <MenuIcon />
           </IconButton>
@@ -127,4 +128,6 @@ export default function Header() {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Header;

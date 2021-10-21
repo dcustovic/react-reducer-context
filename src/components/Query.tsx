@@ -1,12 +1,14 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import useApiCall from "../hooks/useApiCall";
 
 //
 const Query = () => {
-  const { data, isLoading, error } = useApiCall();
+  const [fetchState, setFetchState] = useState(true);
 
+  const { data, isLoading, error } = useApiCall(fetchState);
   const restoran = useMemo(() => data?.data && data.data.name, [data]);
+  const review = useMemo(() => data?.data && data.data.review, [data]);
 
   if (isLoading) {
     return (
@@ -19,14 +21,14 @@ const Query = () => {
   }
 
   return (
-    <ul>
+    <ul style={{ marginLeft: "15rem" }}>
       <p>Restaurant</p>
 
       <ol>
         <strong>name</strong>: {restoran}
       </ol>
       <ol>
-        <strong>review</strong>: {data?.data.review}
+        <strong>review</strong>: {review}
       </ol>
     </ul>
   );

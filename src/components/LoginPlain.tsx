@@ -1,5 +1,5 @@
 const LoginPlain = () => {
-  return <ul>Login to enter the app.</ul>;
+  return <ul>Welcome!</ul>;
 };
 
 export default LoginPlain;

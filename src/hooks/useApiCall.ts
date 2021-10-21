@@ -11,6 +11,8 @@ const getQuery = async () => {
   }
 };
 
-export default function useApiCall() {
-  return useQuery<AxiosResponse<any> | undefined>("api-call", getQuery);
+export default function useApiCall(fetchState: boolean) {
+  return useQuery<AxiosResponse<any> | undefined>("api-call", getQuery, {
+    enabled: !!fetchState,
+  });
 }
