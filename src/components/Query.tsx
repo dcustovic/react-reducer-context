@@ -4,16 +4,18 @@ import useApiCall from "../hooks/useApiCall";
 
 //
 const Query = () => {
-  const [fetchState, setFetchState] = useState(true);
+  const [fetchState] = useState(true);
 
-  const { data, isLoading, error } = useApiCall(fetchState);
+
+  const { data, isLoading, error } = useApiCall("restaurants", fetchState);
   const restoran = useMemo(() => data?.data && data.data.name, [data]);
   const review = useMemo(() => data?.data && data.data.review, [data]);
 
   if (isLoading) {
     return (
       <div>
-        <CircularProgress style={{ color: "#59d0ff" }} /> Loading... Please wait
+        <CircularProgress style={{ color: "#59d0ff", marginLeft: "15rem" }} />{" "}
+        Loading...
       </div>
     );
   } else if (error) {

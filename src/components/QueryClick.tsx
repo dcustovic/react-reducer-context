@@ -1,21 +1,26 @@
+import React, { useState } from "react";
 import { Button, CircularProgress } from "@mui/material";
-import React, { useMemo, useState } from "react";
 import useApiCall from "../hooks/useApiCall";
 
 const QueryClick = () => {
   const [fetchState, setFetchState] = useState(false);
 
-  const { data, isLoading, error, refetch } = useApiCall(fetchState);
+  const { data, isLoading, error, refetch } = useApiCall(
+    "click-restaurant",
+    fetchState
+  );
 
-  const restoran = useMemo(() => data?.data && data.data.name, [data]);
-  const review = useMemo(() => data?.data && data.data.review, [data]);
+  const restoran = React.useMemo(() => data?.data && data.data.name, [data]);
+  const review = React.useMemo(() => data?.data && data.data.review, [data]);
   if (error) {
     return <div>`There was an error: ${error}`</div>;
   }
 
   function getRestaurant() {
-    refetch();
-    setFetchState(!fetchState);
+    setFetchState(true);
+    if (fetchState === true) {
+      refetch();
+    }
   }
 
   return (
